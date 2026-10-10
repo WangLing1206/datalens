@@ -1,0 +1,89 @@
+1
+00:00:00,800 --> 00:00:15,330
+DataLens —— 把 pandas 全流程可视化的数据分析工作台
+DataLens — the whole pandas workflow, done visually
+
+2
+00:00:15,330 --> 00:00:29,870
+默认加载泰坦尼克号数据；健康分综合完整度、重复值与列有效性，并给出扣分原因
+The Titanic dataset loads by default. The health score combines completeness, duplicates and column validity — and shows what cost points
+
+3
+00:00:29,870 --> 00:00:45,640
+自动洞察主动指出问题，点击「去分析」即可跳转并预填参数
+Automatic insights surface the problems; Analyze jumps straight there with parameters pre-filled
+
+4
+00:00:45,640 --> 00:01:01,310
+数据表：多列排序、全表搜索、空值高亮；筛选前先预览影响行数
+Data table: multi-column sort, search, null highlighting; filters preview their effect before applying
+
+5
+00:01:01,310 --> 00:01:17,920
+清洗页：缺失分布图 + 所有操作先预览再执行（891 行 → 182 行）
+Cleaning: a missingness map, and every action previews its effect first (891 rows → 182)
+
+6
+00:01:17,920 --> 00:01:34,610
+分析流水线：记录每一步的行数/空值变化，并实时生成等价 pandas 代码
+The pipeline records every step with its row/null deltas, and mirrors the whole chain as pandas code
+
+7
+00:01:34,610 --> 00:01:46,180
+时间旅行：点任意历史步骤回看当时数据，也可从该步继续重做
+Time travel: click any step to see the data as it was, then continue from there
+
+8
+00:01:46,180 --> 00:01:59,020
+描述统计：20 项指标 + 自动统计解读（均值/中位数关系、偏度、四分位区间）
+Describe: 20 metrics plus a plain-language read-out of mean vs median, skew and the interquartile range
+
+9
+00:01:59,020 --> 00:02:20,280
+分组聚合：女性生存率 74% vs 男性 19%；八种图表随选，量纲差异大时自动启用双坐标轴
+Group by: 74% survival for women vs 19% for men; eight chart types, automatic dual axes when magnitudes differ
+
+10
+00:02:20,280 --> 00:02:32,040
+透视表：性别 × 登船港口的生存率热力图
+Pivot: survival rate across sex × embarkation port as a heatmap
+
+11
+00:02:32,040 --> 00:02:50,090
+相关分析：点击矩阵单元格查看散点图与回归；离散变量自动切换气泡图
+Correlation: click any cell for the scatter and regression fit; discrete variables switch to a bubble plot
+
+12
+00:02:50,090 --> 00:03:05,110
+时间序列：自动识别日期列，重采样、滑动窗口、季节性、趋势预测（含误差评估）
+Time series: auto-detected dates, resampling, rolling windows, seasonality and forecasting with error metrics
+
+13
+00:03:05,110 --> 00:03:19,770
+高级分析：线性回归（系数/t/p/VIF/残差图）与 K-Means 聚类（肘部图 + 轮廓系数）
+Advanced: regression with coefficients, t, p, VIF and residuals; K-means with elbow plot and silhouette
+
+14
+00:03:19,770 --> 00:03:32,900
+报告：一键导出单文件 HTML（图表内联），也可导出清洗后的数据
+Report: export a single self-contained HTML file, or the cleaned data
+
+15
+00:03:32,900 --> 00:03:50,680
+导出分析工程 → 清空 → 导入：整条流水线与结果原样恢复，数据不出浏览器
+Export the project file → clear → import: the whole pipeline and its results come back, with data never leaving the browser
+
+16
+00:03:50,680 --> 00:04:03,300
+每个页面都有独立网址，可分享、可直达；浏览器前进/后退正常可用
+Every view has its own URL — shareable and deep-linkable, with browser back/forward working as usual
+
+17
+00:04:03,300 --> 00:04:12,940
+中英双语由类型系统强制对齐，漏翻一个键就无法编译
+Both languages are enforced by the type system — a missing key fails the build
+
+18
+00:04:12,940 --> 00:04:30,590
+让分析过程可见、可复现、可分享；引擎与真实 pandas 逐项比对，126 个单测 + 14 个端到端测试全部通过
+The process made visible, reproducible and shareable. Verified against real pandas: 126 unit tests and 14 end-to-end tests passing

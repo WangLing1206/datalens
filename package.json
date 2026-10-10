@@ -1,0 +1,37 @@
+{
+  "name": "data-lens",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "DataLens — a visual pandas. Load any dataset and perform the full analysis workflow visually, in Chinese and English.",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview --port 4173",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "tsc -b --noEmit false --emitDeclarationOnly false",
+    "e2e": "playwright test",
+    "gen:fixtures": "python tools/gen_pandas_fixtures.py"
+  },
+  "dependencies": {
+    "echarts": "^6.1.0",
+    "papaparse": "^5.7.0",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
+    "xlsx": "^0.18.5",
+    "zustand": "^5.0.15"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.64.0",
+    "@tailwindcss/vite": "^4.3.3",
+    "@types/papaparse": "^5.3.16",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "@vitejs/plugin-react": "^6.1.2",
+    "tailwindcss": "^4.3.3",
+    "typescript": "^5.9.3",
+    "vite": "^8.3.4",
+    "vitest": "^5.0.3"
+  }
+}
