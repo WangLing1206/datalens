@@ -33,9 +33,21 @@ DEFAULT_REPO = "WangLing1206/datalens"
 BRANCH = "gh-pages"
 
 
+def exe(name: str) -> str:
+    """Resolve a command to a real executable (npm is npm.cmd on Windows)."""
+    found = shutil.which(name)
+    if found:
+        return found
+    for ext in (".cmd", ".exe", ".bat"):
+        found = shutil.which(name + ext)
+        if found:
+            return found
+    return name
+
+
 def run(cmd: list[str], cwd: str = ROOT, capture: bool = True, env: dict | None = None) -> str:
     proc = subprocess.run(
-        cmd, cwd=cwd, capture_output=capture, text=True, errors="replace",
+        [exe(cmd[0]), *cmd[1:]], cwd=cwd, capture_output=capture, text=True, errors="replace",
         env={**os.environ, **(env or {})},
     )
     if proc.returncode != 0:
@@ -92,7 +104,7 @@ def api(repo: str, path: str, method: str = "GET", payload: dict | None = None) 
     cmd = ["gh", "api", "-X", method, f"repos/{repo}{path}"]
     if payload is not None:
         cmd += ["--input", "-"]
-    proc = subprocess.run(cmd, capture_output=True, text=True, errors="replace",
+    proc = subprocess.run([exe(cmd[0]), *cmd[1:]], capture_output=True, text=True, errors="replace",
                           input=json.dumps(payload) if payload is not None else None)
     body = proc.stdout.strip()
     try:

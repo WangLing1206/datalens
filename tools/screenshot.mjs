@@ -30,9 +30,10 @@ mkdirSync(OUT, { recursive: true });
 const problems = [];
 
 // Prefer the bundled browser, fall back to the system Chrome install.
+const launchArgs = process.env.PLAYWRIGHT_NO_PROXY ? ['--no-proxy-server'] : [];
 const browser = await chromium
-  .launch()
-  .catch(() => chromium.launch({ channel: 'chrome' }));
+  .launch({ args: launchArgs })
+  .catch(() => chromium.launch({ channel: 'chrome', args: launchArgs }));
 const page = await browser.newPage({ viewport: { width: 1600, height: 1000 }, deviceScaleFactor: 1 });
 
 page.on('console', (msg) => {

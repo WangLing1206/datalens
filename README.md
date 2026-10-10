@@ -3,7 +3,9 @@
 > 用可视化方式完成 pandas 的全流程数据分析：加载 → 清洗 → 描述统计 → 分组聚合 → 透视 → 相关分析 → 时间序列 → 建模 → 报告。
 > 纯前端、零后端，数据只在浏览器本地处理。
 
-**在线地址**：https://datalens-steel-iota.vercel.app
+**在线地址（Vercel）**：https://datalens-steel-iota.vercel.app
+**在线地址（GitHub Pages，同一份构建）**：https://wangling1206.github.io/datalens/
+**源码仓库**：https://github.com/WangLing1206/datalens
 **英文文档**：[README.en.md](./README.en.md)
 
 ---

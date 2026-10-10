@@ -2,7 +2,8 @@
 
 > A visual pandas — the whole analysis workflow, done visually
 
-**在线地址 / Live URL**: <https://datalens-steel-iota.vercel.app>
+**在线地址 / Live URL**: <https://datalens-steel-iota.vercel.app>（Vercel） · <https://wangling1206.github.io/datalens/>（GitHub Pages）
+**源码仓库 / Repository**: <https://github.com/WangLing1206/datalens>
 
 ---
 
@@ -154,13 +155,15 @@ The project has 126 unit tests, all passing: 38 pandas-parity tests, 78 engine u
 
 | 交付物 / Deliverable | 说明 / Notes |
 |---|---|
-| 在线地址 / Live URL | https://datalens-steel-iota.vercel.app |
+| 在线地址 / Live URL | https://datalens-steel-iota.vercel.app（Vercel） |
+| 在线地址（镜像）/ Live URL (mirror) | https://wangling1206.github.io/datalens/（GitHub Pages，同一份构建） |
+| 源码仓库 / Repository | https://github.com/WangLing1206/datalens |
 | 源代码 / Source | 本压缩包（不含 node_modules），含双语 README、示例数据与全部工具脚本 |
 | 演示视频 / Demo video | datalens-demo.mp4，中文讲解 + 中英双语字幕，约 4 分 40 秒（另附 SRT 字幕文件） |
 | 亮点文档 / This document | DataLens-亮点说明.docx（中英对照） |
 
-- 运行方式：npm install 安装依赖，npm run dev 启动开发服务器（localhost:5173），npm run build 生产构建，npm test 运行全部单元测试，npm run e2e 在真实浏览器里跑端到端测试。部署方面，项目已配置好 vercel.json，执行 npx vercel --prod 即可发布；也可以把 dist/ 目录部署到任意静态托管。
-  - *To run: npm install, then npm run dev for the dev server (localhost:5173), npm run build for a production build, npm test for the unit suite, and npm run e2e to drive the real app in a browser. For deployment, vercel.json is already configured — run npx vercel --prod, or serve the dist/ directory from any static host.*
+- 运行方式：npm install 安装依赖，npm run dev 启动开发服务器（localhost:5173），npm run build 生产构建，npm test 运行全部单元测试，npm run e2e 在真实浏览器里跑端到端测试。部署方面，项目已配置好 vercel.json，执行 npx vercel --prod 即可发布；GitHub Pages 的发布用 python tools/deploy_pages.py（自动以 /datalens/ 为 base 构建并推送到 gh-pages 分支）；也可以把 dist/ 目录部署到任意静态托管。
+  - *To run: npm install, then npm run dev for the dev server (localhost:5173), npm run build for a production build, npm test for the unit suite, and npm run e2e to drive the real app in a browser. For deployment, vercel.json is already configured — run npx vercel --prod. For GitHub Pages, python tools/deploy_pages.py builds with the /datalens/ base and pushes the result to the gh-pages branch. Any static host will also do.*
 
 - 随源码附带的验证脚本：node tools/repro.mjs 逐个操练 11 个页面的关键控件；node tools/interaction.mjs 验证 URL 路由、撤销重做与工程导入导出；node tools/i18n-audit.mjs 逐页检查双语一致性；node tools/screenshot.mjs 逐页截图并收集控制台错误；python tools/gen_pandas_fixtures.py 用真实 pandas 重新生成基准数据；tools/video/ 下是完整的录屏、配音与合成脚本。
   - *Verification scripts shipped with the source: node tools/repro.mjs exercises the key controls on all eleven pages; node tools/interaction.mjs checks URL routing, undo/redo and project import/export; node tools/i18n-audit.mjs audits bilingual consistency page by page; node tools/screenshot.mjs captures every page and collects console errors; python tools/gen_pandas_fixtures.py regenerates the pandas ground truth; and tools/video/ holds the full recording, narration and mux pipeline.*

@@ -7,7 +7,8 @@
 import { chromium } from 'playwright';
 
 const BASE = process.argv[2] ?? 'http://127.0.0.1:5173';
-const browser = await chromium.launch().catch(() => chromium.launch({ channel: 'chrome' }));
+const launchArgs = process.env.PLAYWRIGHT_NO_PROXY ? ['--no-proxy-server'] : [];
+const browser = await chromium.launch({ args: launchArgs }).catch(() => chromium.launch({ channel: 'chrome', args: launchArgs }));
 
 const results = [];
 const firstLine = (e) => String(e && e.message ? e.message : e).split('\n')[0];

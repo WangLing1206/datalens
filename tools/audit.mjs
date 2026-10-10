@@ -14,12 +14,22 @@ import { join } from 'node:path';
 const BASE = process.argv[2] ?? 'http://127.0.0.1:5173';
 const OUT = process.argv[3] ?? 'shots/audit';
 
+/**
+ * Launch Chromium, honouring PLAYWRIGHT_NO_PROXY=1. A machine with an
+ * unreachable system proxy (a VPN client, say) will otherwise hang on external
+ * URLs, so set that variable when pointing these tools at a deployed site.
+ */
+async function launchBrowser() {
+  const args = process.env.PLAYWRIGHT_NO_PROXY ? ['--no-proxy-server'] : [];
+  return chromium.launch({ args }).catch(() => chromium.launch({ channel: 'chrome', args }));
+}
+
 mkdirSync(OUT, { recursive: true });
 
 const problems = [];
 let currentPhase = 'boot';
 
-const browser = await chromium.launch().catch(() => chromium.launch({ channel: 'chrome' }));
+const browser = await launchBrowser();
 const page = await browser.newPage({ viewport: { width: 1600, height: 1000 } });
 
 page.on('console', (msg) => {

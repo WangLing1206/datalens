@@ -3,7 +3,9 @@
 > The complete pandas analysis workflow, done visually: load → clean → describe → group → pivot → correlate → forecast → model → report.
 > Pure front-end, no backend. Your data is processed entirely in the browser.
 
-**Live site**: https://datalens-steel-iota.vercel.app
+**Live site (Vercel)**: https://datalens-steel-iota.vercel.app
+**Live site (GitHub Pages, same build)**: https://wangling1206.github.io/datalens/
+**Repository**: https://github.com/WangLing1206/datalens
 **Chinese documentation**: [README.md](./README.md)
 
 ---

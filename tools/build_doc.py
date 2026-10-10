@@ -27,6 +27,9 @@ SHOTS = os.path.join(ROOT, "shots")
 os.makedirs(OUT, exist_ok=True)
 
 LIVE_URL = "https://datalens-steel-iota.vercel.app"
+# The same build is also published to GitHub Pages (sub-path base).
+PAGES_URL = "https://wangling1206.github.io/datalens/"
+REPO_URL = "https://github.com/WangLing1206/datalens"
 
 ACCENT = RGBColor(0x4B, 0x41, 0xD6)
 MUTED = RGBColor(0x6B, 0x72, 0x86)
@@ -365,7 +368,9 @@ SECTIONS: list[Section | Bullet] = [
         table=(
             ["交付物 / Deliverable", "说明 / Notes"],
             [
-                ["在线地址 / Live URL", LIVE_URL],
+                ["在线地址 / Live URL", f"{LIVE_URL}（Vercel）"],
+                ["在线地址（镜像）/ Live URL (mirror)", f"{PAGES_URL}（GitHub Pages，同一份构建）"],
+                ["源码仓库 / Repository", REPO_URL],
                 ["源代码 / Source", "本压缩包（不含 node_modules），含双语 README、示例数据与全部工具脚本"],
                 ["演示视频 / Demo video", "datalens-demo.mp4，中文讲解 + 中英双语字幕，约 4 分 40 秒（另附 SRT 字幕文件）"],
                 ["亮点文档 / This document", "DataLens-亮点说明.docx（中英对照）"],
@@ -376,10 +381,12 @@ SECTIONS: list[Section | Bullet] = [
         zh="运行方式：npm install 安装依赖，npm run dev 启动开发服务器（localhost:5173），"
            "npm run build 生产构建，npm test 运行全部单元测试，npm run e2e 在真实浏览器里跑端到端测试。"
            "部署方面，项目已配置好 vercel.json，执行 npx vercel --prod 即可发布；"
+           "GitHub Pages 的发布用 python tools/deploy_pages.py（自动以 /datalens/ 为 base 构建并推送到 gh-pages 分支）；"
            "也可以把 dist/ 目录部署到任意静态托管。",
         en="To run: npm install, then npm run dev for the dev server (localhost:5173), npm run build for a production "
            "build, npm test for the unit suite, and npm run e2e to drive the real app in a browser. For deployment, "
-           "vercel.json is already configured — run npx vercel --prod, or serve the dist/ directory from any static host.",
+           "vercel.json is already configured — run npx vercel --prod. For GitHub Pages, python tools/deploy_pages.py "
+           "builds with the /datalens/ base and pushes the result to the gh-pages branch. Any static host will also do.",
     ),
     Bullet(
         zh="随源码附带的验证脚本：node tools/repro.mjs 逐个操练 11 个页面的关键控件；"
@@ -452,13 +459,14 @@ def build_docx() -> str:
     r.font.color.rgb = MUTED
     set_cjk(r)
 
-    link = doc.add_paragraph()
-    link.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    r = link.add_run(LIVE_URL)
-    r.font.size = Pt(10)
-    r.font.color.rgb = ACCENT
-    r.font.underline = True
-    set_cjk(r)
+    for published in (LIVE_URL, PAGES_URL):
+        link = doc.add_paragraph()
+        link.alignment = WD_ALIGN_PARAGRAPH.CENTER
+        r = link.add_run(published)
+        r.font.size = Pt(10)
+        r.font.color.rgb = ACCENT
+        r.font.underline = True
+        set_cjk(r)
 
     doc.add_paragraph()
 
@@ -586,7 +594,8 @@ def build_markdown() -> str:
         "",
         "> A visual pandas — the whole analysis workflow, done visually",
         "",
-        f"**在线地址 / Live URL**: <{LIVE_URL}>",
+        f"**在线地址 / Live URL**: <{LIVE_URL}>（Vercel） · <{PAGES_URL}>（GitHub Pages）",
+        f"**源码仓库 / Repository**: <{REPO_URL}>",
         "",
         "---",
         "",
